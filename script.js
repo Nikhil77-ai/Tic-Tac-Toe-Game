@@ -62,19 +62,22 @@ const showWinner = (winner) => {
     disableBoxes();
 }
 
-const checkWinner = () =>{
-    reset_btn.classList.remove("hidereset-btn")
-    for(let pattern of winPattern){
-        if(boxes[pattern[0]].innerText != "" && boxes[pattern[1]].innerText != "" && boxes[pattern[2]].innerText != ""){
-            if(boxes[pattern[0]].innerText === boxes[pattern[1]].innerText && boxes[pattern[1]].innerText === boxes[pattern[2]].innerText){
-                   showWinner(boxes[pattern[0]].innerText);   
-                   return true;
-            }                        
-        }else{
-            return false;
-        }        
+const checkWinner = () => {
+    for (let pattern of winPattern) {
+        let pos1 = boxes[pattern[0]].innerText;
+        let pos2 = boxes[pattern[1]].innerText;
+        let pos3 = boxes[pattern[2]].innerText;
+
+        if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
+            if (pos1 === pos2 && pos2 === pos3) {
+                showWinner(pos1);
+                return true;
+            }
+        }
     }
-}
+    return false; 
+};
+
 
 newgameBtn.addEventListener("click", ()=>{
     turnO = true;
